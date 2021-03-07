@@ -18,12 +18,6 @@ body {
     font-family: 'Merriweather', serif;
     color: #fff;
 }
-
-html {
-    scroll-behavior: smooth;
-    }
-
-
 /* Typeography General*/
 h1 {
     font-family: 'Fira Sans', sans-serif;
@@ -90,17 +84,14 @@ section {
     text-decoration: none;
     color: #000;
 }
-
 .navbar__menu li:hover{
     transition: ease 0.5s all;
-    background: cadetblue;
-    box-shadow: 0 4px 4px aqua;
+    background: gold;
+    box-shadow: 0 4px 4px wheat;
 }
-.active{
-    background-color:gold;
+.active-nav {
+   background:gold; 
 }
-
-
 /* Header Styles */
 .page__header {
     background: whitesmoke;
@@ -111,9 +102,7 @@ section {
     width: 100%;
     z-index: 5;
 }
-.active{
-    background-color: rgb(175, 149, 0);
-}
+
 
 /* Footer Styles */
 .page__footer {

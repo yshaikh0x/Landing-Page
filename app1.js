@@ -20,7 +20,10 @@
 const navigation = document.getElementById('navbar__list');
 const sections = document.querySelectorAll('section');
 const navLink = document.querySelectorAll('li');
+let allNavLink = document.querySelectorAll('li ul navbar__menu a')
 const active = document.getElementsByClassName("active")
+let activeNav = document.querySelector('.active-nav');
+
 
 // build the nav
 sections.forEach(section => {
@@ -29,45 +32,47 @@ sections.forEach(section => {
   const navItemLink = document.createElement("a");
   navItem.classList.add(section.id);
   navItemLink.textContent = section.id;
+  navItem.setAttribute('data-id', section.id)
+  navItem.id = `nav-${section.id}`;
   navItemLink.href =`#${section.id}`;
   navItem.appendChild(navItemLink);
   docFrag.appendChild(navItem);
   navigation.appendChild(docFrag);
 })
-
-
 // Add class 'active' to section when near top of viewport
-/*sections.forEach(section => {
-    let position = section.getBoundingClientRect();
-    //console.log(position); to check measurement
-   if 
-   position.top <= 150 && position.bottom >= 150
-   )
-       section.classList.add('active');
-            } else {
-         section.classList.remove('active');
-      }
-})*/
-
 function checkView(section){
     let position = section.getBoundingClientRect();
-    return(position.top <= 150 && position.bottom >= 150)
+    return(position.top <= 200 && position.bottom >= 200)
 }
 
-//Active navigation on scroll
+//Active class on scroll
 window.addEventListener('scroll', event => {
-// let navLinks = document.querySelectorAll('ul li');
- // let fromTop = window.scrollY;
+  
   sections.forEach(section => { 
     if (checkView(section)){
+      //adds active-nav on scroll
+      let id = section.getAttribute('id');
+      document.querySelector(`.${id}`).classList.add('active-nav');
+      //Adds active class to section
         section.classList.add('active');
     } else {
+       //remove active-nav on scroll
+      let id = section.getAttribute('id');
+      document.querySelector(`.${id}`).classList.remove('active-nav')
+      //Remove active class to section
       section.classList.remove('active');
-    }
+      //Smooth Scrolling Event
+      sections.addEventListener('click', event => {
+        sections.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      });
+    } 
+    
   });
-});
+  
+  });
 
 
-
-
-
+ 
