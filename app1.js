@@ -37,7 +37,7 @@ sections.forEach(section => {
 
 
 // Add class 'active' to section when near top of viewport
-sections.forEach(section => {
+/*sections.forEach(section => {
     let position = section.getBoundingClientRect();
     //console.log(position); to check measurement
    if 
@@ -47,19 +47,20 @@ sections.forEach(section => {
             } else {
          section.classList.remove('active');
       }
-})
+})*/
+
+function checkView(section){
+    let position = section.getBoundingClientRect();
+    return(position.top <= 150 && position.bottom >= 150)
+}
 
 //Active navigation on scroll
 window.addEventListener('scroll', event => {
 // let navLinks = document.querySelectorAll('ul li');
-  let fromTop = window.scrollY;
+ // let fromTop = window.scrollY;
   sections.forEach(section => { 
-    if (
-      section.offsetTop <= fromTop &&
-      section.offsetTop + section.offsetHeight > fromTop
-    ) {
-      section.classList.add('active');
-     
+    if (checkView(section)){
+        section.classList.add('active');
     } else {
       section.classList.remove('active');
     }
